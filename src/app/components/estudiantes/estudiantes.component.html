@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="row">
+
+
+        <div class="input-group">
+            
+            <input type="text" [(ngModel)]="nombre" class="form-control form-control-lg"
+                placeholder="Ingrese su nombre">
+            
+            
+            <input type="text" [(ngModel)]="apellido" class="form-control form-control-lg"
+                placeholder="Ingrese su apellido">
+
+            <input type="text" [(ngModel)]="edad" class="form-control form-control-lg"
+                placeholder="Ingrese su edad">
+            
+            <button class="btn btn-primary" (click)="agregarEstudiante()">Agregar</button>
+        </div>
+
+
+        <div class="col-lg-6 offset-lg-3 mt-3">
+            <div *ngIf="listEstudiante.length===0" class="card p-2">
+                <h6>No hay Estudiantes registrados</h6>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Edad</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let estudiante of listEstudiante; let i=index">
+                  <td>{{ estudiante.nombre }}</td>
+                  <td>{{ estudiante.apellido }}</td>
+                  <td>{{ estudiante.edad }}</td>
+                  <td>
+                    <span class="cursor" (click)="actualizarEstudiante(estudiante,i)">
+                      <i [class.text-success]="estudiante.estado"
+                        [ngClass]="estudiante.estado ? 'bi bi-check-square-fill text-success' : 'bi bi-check-square'"></i>
+                    </span>
+                    <span class="cursor text-danger" (click)="eliminarEstudiante(i)">
+                      <i class="bi bi-trash"></i>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
